@@ -1,9 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class KNN {
 
@@ -11,7 +8,7 @@ public class KNN {
     static List<Iris> train = new ArrayList<>();
     static List<Iris> test = new ArrayList<>();
 
-
+    static int k;
 
     static void loadData(String filename) throws Exception{
         BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -62,4 +59,32 @@ public class KNN {
             test.add(irisVirginica.get(i));
         }
     }
+
+    static double distance(double[] a, double[] b){
+        double sum = 0;
+
+        for (int i = 0; i < a.length; i++) {
+            sum += Math.pow(a[i] - b[i], 2);
+        }
+        return Math.sqrt(sum);
+    }
+
+    static String classify(double[] vector){
+        List<Iris> neighbors = new ArrayList<>(train);
+
+        neighbors.sort(Comparator.comparingDouble(
+                iris -> distance(vector, iris.features)
+        ));
+
+        Map<String, Integer> votes = new HashMap<>();
+
+        for (int i = 0; i < k; i++) {
+            String label = neighbors.get(i).label;
+            votes.put(label, votes.getOrDefault(label, 0) + 1);
+        }
+
+        return Collections.max(votes.entrySet(), Map.Entry.comparingByValue()).getKey();
+    }
+
+    
 }
