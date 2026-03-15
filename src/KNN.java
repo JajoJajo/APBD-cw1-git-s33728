@@ -115,7 +115,15 @@ public class KNN {
     }
 
     static void fileTest(Scanner scanner) throws Exception{
-        System.out.println("Podaj nazwę pliku:")
-        ;
+        System.out.println("Podaj nazwę pliku:");
+        String filename = scanner.next();
+
+        BufferedReader br = new BufferedReader(new FileReader(filename));
+
+        int total = 0;
+        int correct = 0;
+
+        String line;
+        
     }
 }
