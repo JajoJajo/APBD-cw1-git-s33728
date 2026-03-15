@@ -112,7 +112,5 @@ public class KNN {
         String result = classify(vector);
 
         System.out.println("Przewidziana klasa: " + result);
-
-        System.out.println("Test z maina");
     }
 }
