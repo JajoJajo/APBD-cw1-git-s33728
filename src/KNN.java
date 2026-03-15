@@ -56,7 +56,7 @@ public class KNN {
             train.add(irisVersicolor.get(i));
             train.add(irisVirginica.get(i));
         }
-        for (int i = trainSize; i < data.size() - 1; i++) {
+        for (int i = trainSize; i < data.size() / 3; i++) {
             test.add(irisSetosa.get(i));
             test.add(irisVersicolor.get(i));
             test.add(irisVirginica.get(i));
