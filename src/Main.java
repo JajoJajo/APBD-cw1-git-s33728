@@ -10,5 +10,7 @@ public class Main {
             System.out.println(data);
         System.out.println(KNN.test.size());
         System.out.println(KNN.train.size());
+
+        KNN.evaluateModel();
     }
 }
