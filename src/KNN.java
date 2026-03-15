@@ -58,6 +58,8 @@ public class KNN {
             test.add(irisVersicolor.get(i));
             test.add(irisVirginica.get(i));
         }
+        Collections.shuffle(train);
+        Collections.shuffle(test);
     }
 
     static double distance(double[] a, double[] b){
@@ -97,5 +99,18 @@ public class KNN {
         double accuracy = 100.0 * correct / test.size();
 
         System.out.println("Celność modelu: " + accuracy + "%");
+    }
+
+    static void manualInput(Scanner scanner){
+        double[] vector = new double[4];
+
+        System.out.println("Podaj 4 cechy irysa(sepal length in cm,sepal width in cm,petal length in cm,petal width in cm):");
+
+        for (int i = 0; i < 4; i++) {
+            vector[i] = scanner.nextDouble();
+        }
+        String result = classify(vector);
+
+        System.out.println("Przewidziana klasa: " + result);
     }
 }
