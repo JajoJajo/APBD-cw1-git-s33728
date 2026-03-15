@@ -113,4 +113,9 @@ public class KNN {
 
         System.out.println("Przewidziana klasa: " + result);
     }
+
+    static void fileTest(Scanner scanner) throws Exception{
+        System.out.println("Podaj nazwę pliku:")
+        ;
+    }
 }
