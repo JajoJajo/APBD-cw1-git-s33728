@@ -8,7 +8,7 @@ public class KNN {
     static List<Iris> train = new ArrayList<>();
     static List<Iris> test = new ArrayList<>();
 
-    static int k;
+    static int k = 5;
 
     static void loadData(String filename) throws Exception{
         BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -86,5 +86,16 @@ public class KNN {
         return Collections.max(votes.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 
-    
+    static void evaluateModel(){
+        int correct = 0;
+        for (Iris iris : test){
+            String predicted = classify(iris.features);
+
+            if (predicted.equals(iris.label))
+                correct++;
+        }
+        double accuracy = 100.0 * correct / test.size();
+
+        System.out.println("Celność modelu: " + accuracy + "%");
+    }
 }
