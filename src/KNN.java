@@ -26,6 +26,7 @@ public class KNN {
             }
             data.add(new Iris(features, parts[4]));
         }
+        br.close();
     }
 
     static void splitData(double trainRatio){
@@ -124,6 +125,26 @@ public class KNN {
         int correct = 0;
 
         String line;
-        
+
+        while ((line = br.readLine()) != null){
+            String[] parts = line.split(",");
+            double[] features = new double[4];
+
+            for (int i = 0; i < 4; i++) {
+                features[i] = Double.parseDouble(parts[i]);
+            }
+
+            String trueLabel = parts[4];
+            String predicted = classify(features);
+
+            if (predicted.equals(trueLabel))
+                correct++;
+            total++;
+        }
+        br.close();
+
+        double accuracy = 100.0 * correct / total;
+
+        System.out.println("Celność dla pliku: " + accuracy + "%");
     }
 }
